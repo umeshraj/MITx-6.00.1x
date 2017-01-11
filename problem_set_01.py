@@ -33,29 +33,22 @@ print("Number of times bob occurs is: {0}".format(num_find))
 
 """ Find the longest alphabetical substring"""
 s = 'iugrqyqrzjjtulbo'
-#s = 'qhjxhpbhgstltgxkicrgbssr'
-#s = 'zyxwvutsrqponmlkjihgfedcba'
+
 l = 0
-r = 1
-max_len = 0
-max_str = []
+r = l+1
 cur_str = s[0]
+max_str = s[0]
 
 while r < len(s):
-    if s[r] >= s[r-1]:  # nxt string is bigger\
+    if s[r] >= s[r-1]:
         cur_str = s[l:r+1]
         r += 1
-    else:  # broke order
-        sub_len = len(cur_str)
-        if sub_len > max_len:
-            max_len = sub_len
+    else:
+        if len(cur_str) > len(max_str):
             max_str = cur_str
-        # move left and right
         l = r
         r = l+1
 
 if len(cur_str) > len(max_str):
     max_str = cur_str
-
 print('Longest substring in alphabetical order is: {0}'.format(max_str))
-
