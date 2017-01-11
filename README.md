@@ -1,1 +1,1 @@
-MIT6001x_cs_python
+MITx: 6.00.1x Introduction to Computer Science and Programming Using Python
