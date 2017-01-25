@@ -83,6 +83,13 @@ def getAvailableLetters(lettersGuessed):
       yet been guessed.
     '''
     # FILL IN YOUR CODE HERE...
+    import string
+    alph = list(string.ascii_lowercase)
+    for char in lettersGuessed:
+        alph.remove(char)
+    out = ''.join(alph)
+    return out
+
 
 
 def hangman(secretWord):
@@ -106,9 +113,49 @@ def hangman(secretWord):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
+    import string
 
+    # welcome message
+    print('Welcome to the game, Hangman!')
 
+    # indicate length of secret word
+    word_len = len(secretWord)
+    print('I am thinking of a word that is {0} letters long.'.format(word_len))
+    #print('-------------')
 
+    num_guess_left = 8
+    letters_guessed = []
+    chars_remaining = getAvailableLetters(letters_guessed)
+    finished = isWordGuessed(secretWord, letters_guessed)
+
+    while num_guess_left > 0 and not finished:
+        print('-------------')
+        print('You have {0} guesses left.'.format(num_guess_left))
+        print('Available letters: {0}'.format(chars_remaining))
+
+        guess = input('Please guess a letter:')
+        guess = guess.lower()
+
+        guessed_state = getGuessedWord(secretWord, letters_guessed)
+        if guess in letters_guessed:
+            print("Oops! You've already guessed that letter: {0}".format(guessed_state))
+        else:  # new guess
+            letters_guessed.append(guess)
+            chars_remaining = getAvailableLetters(letters_guessed)
+            if guess in secretWord:
+                guessed_state = getGuessedWord(secretWord, letters_guessed)
+                print("Good guess: {0}".format(guessed_state))
+                finished = isWordGuessed(secretWord, letters_guessed)
+            else: # new guess is not in secret word
+                num_guess_left -= 1
+                print("Oops! That letter is not in my word: {0}".format(guessed_state))
+
+    # decide if user won or lost
+    print("-----------")
+    if num_guess_left > 0:
+        print('Congratulations, you won!')
+    else:
+        print("Sorry, you ran out of guesses. The word was {0}.".format(secretWord))
 
 
 
@@ -116,5 +163,6 @@ def hangman(secretWord):
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
-# secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+#secretWord = chooseWord(wordlist).lower()
+secretWord = 'sea'
+hangman(secretWord)
