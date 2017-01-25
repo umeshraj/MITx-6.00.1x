@@ -67,7 +67,13 @@ def getGuessedWord(secretWord, lettersGuessed):
       what letters in secretWord have been guessed so far.
     '''
     # FILL IN YOUR CODE HERE...
-
+    out = ''
+    for char in secretWord:
+        if char in lettersGuessed:
+            out = out + char
+        else:
+            out = out + '_ '
+    return out
 
 
 def getAvailableLetters(lettersGuessed):
