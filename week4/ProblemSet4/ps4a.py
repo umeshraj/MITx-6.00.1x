@@ -257,8 +257,27 @@ def playHand(hand, wordList, n):
 
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
+    total_score = 0
+    while calculateHandlen(hand) > 0:
+        print('Current Hand:  ', end="")
+        displayHand(hand)  # display hand
+        # user input
+        user_str = input("""Enter word, or a "." to indicate that you are finished: """)
+        if user_str == ".":
+            break
+        else:  # was not a "."
+            valid_word = isValidWord(word=user_str, hand=hand, wordList=wordList)
+            if not valid_word:
+                print("Invalid word, please try again.")
+            else:  # valid word
+                word_score = getWordScore(user_str, n)
+                total_score += word_score
+                print(""" "{0}" earned {1} points. Total: {2} points""".format(user_str, word_score, total_score))
 
+                # update the hand
+                hand = updateHand(hand, user_str)
 
+    print("Goodbye! Total score: {0} points.".format(total_score))
 #
 # Problem #5: Playing a game
 #
