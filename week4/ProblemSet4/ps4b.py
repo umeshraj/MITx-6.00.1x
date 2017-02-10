@@ -141,11 +141,11 @@ def playGame(wordList):
                     print("You have not played a hand yet. Please play a new hand first!")
             # if there's a hand play the game
             if hand:
-                play_comp_human(hand)
+                play_comp_human(hand, wordList)
 
 
 
-def play_comp_human(hand):
+def play_comp_human(hand, wordList):
     """ decide whether to play human or computer """
     player_choice = ''
     while player_choice not in ['u', 'c']:
