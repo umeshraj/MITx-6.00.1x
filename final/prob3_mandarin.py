@@ -17,35 +17,40 @@ def convert_to_mandarin(us_num):
     returns the string mandarin representation of us_num
     '''
     # FILL IN YOUR CODE HERE
-    # handle 0-9
-    us_num_list = list(us_num)
 
+    # handle 0-10 by seeing if numbers are in dictionary
     mand_num = trans.get(us_num, None)
-    if mand_num is None:  # number is >10
-        us_num_list = list(us_num)
-        first_num = us_num_list[0]
-        if first_num == '1':  # 11-19
-            mand_num = 'shi ' + trans[us_num_list[1]]
+
+    if mand_num is None:  # number is > 10
+        first_num = us_num[0]
+        if  first_num == '1':  # 11-19
+            first_str = 'shi'
+            last_str = trans[us_num[1]]
+            mand_num = ' '.join([first_str, last_str])
         else:  # 20-99
-            last_num = us_num_list[-1]
-            if last_num == '0':
-                mand_num = ' '.join([trans[first_num], trans['10']])
+            first_str = trans[first_num]
+            last_num = us_num[-1]
+            if  last_num == '0':  # check if last digit is 0
+                last_str = trans['10']
+                mand_num = ' '.join([first_str, last_str])
             else:
                 last_str = trans[last_num]
-                mand_num = ' '.join([trans[first_num], trans['10'], last_str])
+                mand_num = ' '.join([first_str, trans['10'], last_str])
 
     return mand_num
 
+
+# tests can be run using py.test
 def test_mandarin_0to10():
     assert convert_to_mandarin('0') == 'ling'
 
 def test_mandarin_11to19():
-    ans_dict = {'11': 'shi yi', '19': 'shi jiu'}
+    ans_dict = {'11': 'shi yi', '19': 'shi jiu', '16': 'shi liu'}
     for k, v in ans_dict.items():
         assert convert_to_mandarin(k) == v
 
 def test_mandarin_end_nonzero():
-    ans_dict = {'25': 'er shi wu', '98': 'jiu shi ba'}
+    ans_dict = {'25': 'er shi wu', '98': 'jiu shi ba', '36': 'san shi liu'}
     for k, v in ans_dict.items():
         assert convert_to_mandarin(k) == v
 
@@ -53,7 +58,3 @@ def test_mandarin_end_zero():
     ans_dict = {'20': 'er shi', '90': 'jiu shi'}
     for k, v in ans_dict.items():
         assert convert_to_mandarin(k) == v
-
-
-print(convert_to_mandarin('31'))
-
