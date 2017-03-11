@@ -43,7 +43,11 @@ def longest_run(L):
 
 
 def chk_criterion(num_b, num_a, monotone_type):
-    """ check if ge or le"""
+    """ check if comparison is greater/equal to or lesser/equal
+    Args:
+        num_b (float)
+
+    """
     if monotone_type == 'incr':
         return num_b >= num_a
     elif monotone_type == 'decr':
@@ -84,6 +88,9 @@ def get_longest_run_index(L, monotone_type):
     #max_end_idx = min(max_end_idx, len(L)-1)
 
     return (max_beg_idx, max_end_idx)
+
+
+# tests to run using py.test
 
 def test_get_longest_run_index():
     L1 = [1, 2, 3]
