@@ -20,7 +20,7 @@ class Lecturer(Person):
 
 class Professor(Lecturer):
     def say(self, stuff):
-        return self.name + ' says: ' + self.lecture(stuff)
+        return 'Prof. ' + self.name + ' says: ' + self.lecture(stuff)
 
 # Prob 6-1
 #class ArrogantProfessor(Professor):
@@ -32,6 +32,17 @@ class Professor(Lecturer):
 #        return 'It is obvious that ' + Person.say(self, stuff)
 
 # Prob 6-2
+#class ArrogantProfessor(Professor):
+#    def say(self, stuff):
+#        #return 'It is obvious that ' + self.say(stuff)
+#        return self.name + ' says: ' + 'It is obvious that ' + Lecturer.lecture(self, stuff)
+#
+#    def lecture(self, stuff):
+#        return 'It is obvious that ' + Lecturer.lecture(self, stuff)
+
+
+#  Prob 6-3
+# Prob 6-2
 class ArrogantProfessor(Professor):
     def say(self, stuff):
         #return 'It is obvious that ' + self.say(stuff)
@@ -39,6 +50,7 @@ class ArrogantProfessor(Professor):
 
     def lecture(self, stuff):
         return 'It is obvious that ' + Lecturer.lecture(self, stuff)
+
 
 
 
@@ -55,3 +67,7 @@ print(pe.lecture('the sky is blue'))
 
 print(ae.say('the sky is blue'))
 print(ae.lecture('the sky is blue'))
+
+# 6-3
+print(pe.say('the sky is blue'))
+print(ae.say('the sky is blue'))
