@@ -23,13 +23,23 @@ class Professor(Lecturer):
         return self.name + ' says: ' + self.lecture(stuff)
 
 # Prob 6-1
+#class ArrogantProfessor(Professor):
+#    def say(self, stuff):
+#        #return 'It is obvious that ' + self.say(stuff)
+#        return self.name + ' says: ' + 'It is obvious that ' + Person.say(self, stuff)
+#
+#    def lecture(self, stuff):
+#        return 'It is obvious that ' + Person.say(self, stuff)
+
+# Prob 6-2
 class ArrogantProfessor(Professor):
     def say(self, stuff):
         #return 'It is obvious that ' + self.say(stuff)
-        return self.name + ' says: ' + 'It is obvious that ' + Person.say(self, stuff)
+        return self.name + ' says: ' + 'It is obvious that ' + Lecturer.lecture(self, stuff)
 
     def lecture(self, stuff):
-        return 'It is obvious that ' + Person.say(self, stuff)
+        return 'It is obvious that ' + Lecturer.lecture(self, stuff)
+
 
 
 # testing condition
