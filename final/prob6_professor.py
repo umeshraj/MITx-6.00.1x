@@ -42,7 +42,6 @@ class Professor(Lecturer):
 
 
 #  Prob 6-3
-# Prob 6-2
 class ArrogantProfessor(Professor):
     def say(self, stuff):
         #return 'It is obvious that ' + self.say(stuff)
