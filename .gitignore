@@ -5,3 +5,5 @@
 *.pyc
 
 midterm/\.ipynb_checkpoints/
+
+final/\.cache/v/cache/
