@@ -19,5 +19,8 @@ def general_poly(L):
         return fin_sum
     return poly_sum
 
+
+# test using py.test
+
 def test_general_poly():
     assert general_poly([1, 2, 3, 4])(10) == 1234
